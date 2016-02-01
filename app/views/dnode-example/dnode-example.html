@@ -1,0 +1,10 @@
+<article class="view-template view-dnode-example" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
+    <h1>Dnode Example</h1>
+    <d-node-list types="dnode-example" on-select="select(selectedDnid)" ng-init="setDnode(0)" class="node-list--dnode-example"></d-node-list>
+    <d-node dnode="dnode" dnid="dnid" ng-show="visible" class="dnode-type-dnode-example">
+        <a class="button" ng-click="toggleShow()">close</a>
+        <img d-file-src="dnode.field_images.und[0].fid" image_style="dnode-example-image" />
+        <h2>{{dnode.title}}</h2>
+        <div class="dnode-example-body dnode-body body">{{dnode.field_body.und[0].value}}</div>
+    </d-node>
+</article>

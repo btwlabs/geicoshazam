@@ -1,0 +1,68 @@
+.view-animate-prev.ng-enter {
+    animation: slide-in-left 0.5s;
+    -webkit-animation: slide-in-left 0.5s;
+    -moz-animation: slide-in-left 0.5s;
+    -o-animation: slide-in-left 0.5s;
+}
+
+.view-animate-prev.ng-leave {
+    animation: slide-out-right 0.5s;
+    -webkit-animation: slide-out-right 0.5s;
+    -moz-animation: slide-out-right 0.5s;
+    -o-animation: slide-out-right 0.5s;
+}
+
+.view-animate-next.ng-enter {
+    animation: slide-in-right 0.5s;
+    -webkit-animation: slide-in-right 0.5s;
+    -moz-animation: slide-in-right 0.5s;
+    -o-animation: slide-in-right 0.5s;
+}
+
+.view-animate-next.ng-leave {
+    animation: slide-out-left 0.5s;
+    -webkit-animation: slide-out-left 0.5s;
+    -moz-animation: slide-out-left 0.5s;
+    -o-animation: slide-out-left 0.5s;
+}
+
+.view-animate-next.view-animate-next-remove {
+    animation: slide-out-right 0.5s;
+    -webkit-animation: slide-out-right 0.5s;
+    -moz-animation: slide-out-right 0.5s;
+    -o-animation: slide-out-right 0.5s;
+}
+
+.view-animate-prev.view-animate-prev-remove  {
+    animation: slide-out-left 0.5s;
+    -webkit-animation: slide-out-left 0.5s;
+    -moz-animation: slide-out-left 0.5s;
+    -o-animation: slide-out-left 0.5s;
+}
+
+.pager-dots {
+    width: 100%;
+    padding: 0;
+    height: 14px;
+    z-index: 999;
+    list-style: none;
+}
+
+.pager-dots li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    text-indent: -999em;
+    background: #fff;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: 0 0 1px 1px #707173;
+    margin-right: 10px;
+}
+.pager-dots li {
+    background: #00ffff;
+}
+.pager-dots li.active {
+    background: #ff8000;
+}

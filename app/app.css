@@ -1,0 +1,104 @@
+a[ng-click]{
+    cursor: pointer;
+}
+
+.logo {
+    width:100px;
+    height:100px;
+}
+.view-template {
+    height: auto;
+    padding-top: 100px;
+}
+
+#site-wrapper {
+  overflow: scroll auto;
+}
+
+.view {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /*overflow-y: scroll;*/
+}
+
+/* ANIMATIONS */
+@keyframes slide-in-left {
+    from { transform : translateX(-100%); }
+    to { transform : translateX(0%); }
+}
+
+@keyframes slide-out-right {
+    from { transform : translateX(0%); }
+    to { transform : translateX(100%); }
+}
+
+@keyframes slide-out-left {
+    from { transform : translateX(0%); }
+    to { transform : translateX(-100%); }
+}
+
+@keyframes slide-in-right {
+    from { transform : translateX(100%); }
+    to { transform : translateX(0%); }
+}
+
+@keyframes slide-in-left {
+    from { transform : translateX(-100%); }
+    to { transform : translateX(0%); }
+}
+
+@-webkit-keyframes slide-out-right {
+    from { transform : translateX(0%); }
+    to { transform : translateX(100%); }
+}
+
+@-webkit-keyframes slide-out-left {
+    from { transform : translateX(0%); }
+    to { transform : translateX(-100%); }
+}
+
+@-webkit-keyframes slide-in-right {
+    from { transform : translateX(100%); }
+    to { transform : translateX(0%); }
+}
+
+@-moz-keyframes slide-in-left {
+    from { transform : translateX(-100%); }
+    to { transform : translateX(0%); }
+}
+
+@-moz-keyframes slide-out-right {
+    from { transform : translateX(0%); }
+    to { transform : translateX(100%); }
+}
+
+@-moz-keyframes slide-out-left {
+    from { transform : translateX(0%); }
+    to { transform : translateX(-100%); }
+}
+
+@-moz-keyframes slide-in-right {
+    from { transform : translateX(100%); }
+    to { transform : translateX(0%); }
+}
+
+@-o-keyframes slide-in-left {
+    from { transform : translateX(-100%); }
+    to { transform : translateX(0%); }
+}
+
+@-o-keyframes slide-out-right {
+    from { transform : translateX(0%); }
+    to { transform : translateX(100%); }
+}
+
+@-o-keyframes slide-out-left {
+    from { transform : translateX(0%); }
+    to { transform : translateX(-100%); }
+}
+
+@-o-keyframes slide-in-right {
+    from { transform : translateX(100%); }
+    to { transform : translateX(0%); }
+}
