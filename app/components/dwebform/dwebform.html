@@ -1,0 +1,6 @@
+<div class="dwebform">
+    <div ng-show="messageView" class="success-message">{{message}}</div>
+    <formly-form model="values" fields="fields" form="form">
+        <button type="submit" class="button" ng-disabled="form.$invalid" ng-click="submit(values)">Submit</button>
+    </formly-form>
+</div>
