@@ -1,1 +1,47 @@
-<meta http-equiv="refresh" content="0; url=http://btwlabs.github.io/geicoshazam/app/index.html" />
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="btw" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="btw" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="btw" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="btw" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="components/btw.pager/btw.pager.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/angular-gestures/gestures.js"></script>
+    <script src="bower_components/api-check/dist/api-check.js"></script>
+    <script src="bower_components/angular-formly/dist/formly.js"></script>
+    <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
+    <script src="components/btw.api/btw.api.js"></script>
+    <script src="components/btw.pager/btw.pager.js"></script>
+    <script src="components/dnode/dnode.js"></script>
+    <script src="components/dfile/dfile.js"></script>
+    <script src="components/dwebform/dwebform.js"></script>
+    <script src="components/dview/dview.js"></script>
+    <script src="app.js"></script>
+    <script src="views/home/home.js"></script>
+</head>
+<body ng-cloak>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div class="content">
+    <div ng-view class="view" ng-class="{'view-animate' : mainVisitedOnce, 'view-animate-next' : swipedLeft, 'view-animate-prev' : swipedRight}"></div>
+  </div><!-- .content -->
+
+</body>
+</html>
