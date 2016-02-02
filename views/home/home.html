@@ -1,3 +1,8 @@
 <article class="view-template home" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
-  THIS IS THE HOMEPAGE. DO WHAT THOU WILT!
+    <img src="assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png" height="200px" width="200px"/>
+    <d-node dnid="1" dnode="dnode">
+        <div><h2>{{dnode.title}}</h2></div>
+        <div ng-bind-html="dnode.trustHtml(dnode.body.und[0].safe_value)"></div>
+    </d-node>
+    <button type="submit" class="button" ng-click="shareFB()">Share Something Special!</button>
 </article>
