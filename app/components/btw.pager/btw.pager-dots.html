@@ -1,0 +1,7 @@
+<div class="pager-dots-container">
+	<ul class="pager-dots">
+	    <li ng-repeat="route in routes" ng-class="{'pager-dot-item': true, 'active': $index==routeNum}">
+	        <a ng-href="#{{route.originalPath}}" ng-class="{'pager-dot-link': true, 'active': $index==routeNum}">View</a>
+	    </li>
+	</ul>
+</div>
