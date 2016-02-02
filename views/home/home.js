@@ -29,9 +29,9 @@ angular.module('btw.home', ['ngRoute', 'dwebform', 'dview', 'dfile', 'dnode', 'e
             ezfb.ui({
                 method: "feed",
                 link: "http://www.bythewaylabs.com",
-                name: "A test link",
-                description: "Um, i dunno. It's a test. Enjoy.",
-                caption: "This is a caption. Enjoy it tho it sux.",
+                name: "A test linkback to btwlabs.com",
+                description: "This is a test link that goes back to our website. Testing some FB integration",
+                caption: "This is the caption of the link.",
                 picture: "http://geicoshazam.bythewaylabs.com/assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png"
             }, fbResponse(res));
         }
