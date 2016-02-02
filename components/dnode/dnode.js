@@ -2,7 +2,7 @@
 
 angular.module('dnode', ['ngResource', 'btw.api'])
 
-.factory('dnode', ['$resource', 'btwApi', '$q', '$sce',
+.factory('dnode', ['$resource', 'btwApi', '$q',
     function($resource, btwApi, $q, $sce) {
         var dnode = new Object;
 
@@ -157,7 +157,7 @@ angular.module('dnode', ['ngResource', 'btw.api'])
             }
         }, true);
     };
-    var dnodeController = ['$scope', 'dnode', function($scope, dnode) {
+    var dnodeController = ['$scope', '$sce', 'dnode', function($scope, $sce, dnode) {
         $scope.dnode = {};
         this.load = function() {
             // Check if this is a test.
