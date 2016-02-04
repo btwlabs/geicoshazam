@@ -23,7 +23,7 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
                 var file = angular.element(img).attr('src');
                 result.post('/me/photos', {
                     data: {
-                        url: 'http://geicoshazam.bythewaylabs.com/assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png',
+                        url: 'http://geicoshazam.bythewaylabs.com/'+file,
                         message: 'test message for fb photo'
                     },
                 })
