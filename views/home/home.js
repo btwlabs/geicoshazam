@@ -50,7 +50,7 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
                         },
                     })
                     .done(function(response) {
-                        result.post('https://api.twitter.com/1.1/statuses/update_with_media.json', {
+                        result.post('https://api.twitter.com/1.1/statuses/update.json', {
                             data: {
                                 status: "test tweet, will need to come from a dialog",
                                 media_ids: response.media_id_string,
