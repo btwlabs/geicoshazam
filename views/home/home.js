@@ -41,7 +41,7 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
                 var file = angular.element(img).attr('src');
                 result.post('/me/photos', {
                     data: {
-                        url: file,
+                        url: 'http://geicoshazam.bythewaylabs.com/assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png',
                         message: 'test message for fb photo'
                     },
                 })
