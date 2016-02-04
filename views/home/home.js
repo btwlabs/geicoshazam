@@ -87,6 +87,7 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
                 })
                 .fail(function(error) {
                     var go = 'no';
+                    var no = no;
                 });
         }
     }
