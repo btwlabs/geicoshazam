@@ -41,7 +41,7 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
                 var file = angular.element(img).attr('src');
                 result.post('/me/photos', {
                     data: {
-                        source: file,
+                        url: file,
                         message: 'test message for fb photo'
                     },
                 })
