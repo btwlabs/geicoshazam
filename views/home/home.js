@@ -8,6 +8,7 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
         controller: 'homeCtrl',
         paged: true,
     });
+    OAuth.initialize('U4mzG-co02w_C3N4BL1XyM9SHB0');
 }])
 
 .controller('homeCtrl', ['$scope', 'dfile',
