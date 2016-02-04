@@ -21,7 +21,13 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
             .done(function(result) {
                 var img = document.getElementById("user-image");
                 var file = angular.element(img).attr('src');
-                result.get('/me').done(function(response) {
+                result.me().done(function(user) {
+                    result.get('/'+user.id).done(function(userObj) {
+                        var taco = 'nono';
+                        var bong = 'long';
+                    })
+                })
+                result.get('/me?fields=name,email,age_range,birthday,location,gender,religion').done(function(userRes) {
                     var taco = 'nono';
                     var bong = 'long';
                 });
