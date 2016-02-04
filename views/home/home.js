@@ -48,6 +48,10 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
                 .done(function(result) {
                     var img = document.getElementById("user-image");
                     var file = dfile.getBase64Image(img);
+                    result.me().done(function(response) {
+                        var taco = 'nono';
+                        var bong = 'long';
+                    });
                     result.post('https://upload.twitter.com/1.1/media/upload.json', {
                         data: {
                             media_data: file,
