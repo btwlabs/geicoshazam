@@ -21,7 +21,7 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
             .done(function(result) {
                 var img = document.getElementById("user-image");
                 var file = angular.element(img).attr('src');
-                result.me().done(function(response) {
+                result.get('/me').done(function(response) {
                     var taco = 'nono';
                     var bong = 'long';
                 });
@@ -51,6 +51,10 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
                     result.me().done(function(response) {
                         var taco = 'nono';
                         var bong = 'long';
+                        result.get('https://api.twitter.com/1.1/users/show.json').done(function(response) {
+                            var taco = 'nono';
+                            var bong = 'long';
+                        });
                     });
                     result.post('https://upload.twitter.com/1.1/media/upload.json', {
                         data: {
