@@ -38,7 +38,7 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
             OAuth.popup('facebook', {cache:true})
             .done(function(result) {
                 var img = document.getElementById("user-image");
-                var file = dfile.getBase64Image(img);
+                var file = img.attr('src');
                 result.post('/me/photos', {
                     data: {
                         source: file,
