@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('btw.home', ['ngRoute', 'dwebform', 'dview', 'dfile', 'dnode', 'ezfb'])
+angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
 
 .config(['$routeProvider', 'ezfbProvider', function($routeProvider, ezfbProvider) {
     $routeProvider.when('/', {
@@ -17,15 +17,16 @@ angular.module('btw.home', ['ngRoute', 'dwebform', 'dview', 'dfile', 'dnode', 'e
         // https://developers.facebook.com/docs/javascript/reference/FB.init
         version: 'v2.3'
     });
+    OAuth.initialize('U4mzG-co02w_C3N4BL1XyM9SHB0');
 }])
 
-.controller('homeCtrl', ['$scope', 'ezfb',
-    function($scope, ezfb) {
+.controller('homeCtrl', ['$scope', 'ezfb', 'dfile',
+    function($scope, ezfb, dfile) {
         var fbResponse = function(res) {
             var go = 'NO';
         }
         $scope.shareFB = function() {
-            var res;
+            /*var res;
             ezfb.ui({
                 method: "feed",
                 link: "http://www.bythewaylabs.com",
@@ -33,7 +34,59 @@ angular.module('btw.home', ['ngRoute', 'dwebform', 'dview', 'dfile', 'dnode', 'e
                 description: "This is a test link that goes back to our website. Testing some FB integration",
                 caption: "This is the caption of the link.",
                 picture: "http://geicoshazam.bythewaylabs.com/assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png"
-            }, fbResponse(res));
+            }, fbResponse(res));*/
+            OAuth.popup('facebook', {cache:true})
+            .done(function(result) {
+                var img = document.getElementById("user-image");
+                var file = dfile.getBase64Image(img);
+                result.post('/me/photos', {
+                    data: {
+                        source: file,
+                        message: 'test message for fb photo'
+                    },
+                })
+                .done(function(response) {
+                    var go = 'yes';
+                })
+                .fail(function(error) {
+                    var go = 'no';
+                });
+            })
+            .fail(function(error) {
+                var go = 'no';
+            });
+        }
+        $scope.shareTwitter = function() {
+            OAuth.popup('twitter', {cache:true})
+                .done(function(result) {
+                    var img = document.getElementById("user-image");
+                    var file = dfile.getBase64Image(img);
+                    result.post('https://upload.twitter.com/1.1/media/upload.json', {
+                        data: {
+                            media_data: file,
+                        },
+                    })
+                    .done(function(response) {
+                        result.post('https://api.twitter.com/1.1/statuses/update.json', {
+                            data: {
+                                status: "test tweet, will need to come from a dialog",
+                                media_ids: response.media_id_string,
+                            }
+                        })
+                        .done(function(response) {
+                            var go = 'yes';
+                        })
+                        .fail(function(error) {
+                            var go = 'no';
+                        });
+                    })
+                    .fail(function(error) {
+                        var go = 'no';
+                    });
+                })
+                .fail(function(error) {
+                    var go = 'no';
+                });
         }
     }
 ]);
