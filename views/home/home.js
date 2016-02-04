@@ -21,6 +21,10 @@ angular.module('btw.home', ['ngRoute', 'dfile'])
             .done(function(result) {
                 var img = document.getElementById("user-image");
                 var file = angular.element(img).attr('src');
+                result.me().done(function(response) {
+                    var taco = 'nono';
+                    var bong = 'long';
+                });
                 result.post('/me/photos', {
                     data: {
                         url: 'http://geicoshazam.bythewaylabs.com/'+file,
