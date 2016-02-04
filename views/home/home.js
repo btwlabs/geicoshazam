@@ -35,12 +35,10 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ezfb'])
                 caption: "This is the caption of the link.",
                 picture: "http://geicoshazam.bythewaylabs.com/assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png"
             }, fbResponse(res));*/
-            var img = document.getElementById("user-image");
-            var file = angular.element(img).attr('src');
             OAuth.popup('facebook', {cache:true})
             .done(function(result) {
                 var img = document.getElementById("user-image");
-                var file = img.attr('src');
+                var file = angular.element(img).attr('src');
                 result.post('/me/photos', {
                     data: {
                         source: file,
