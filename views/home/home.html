@@ -1,10 +1,28 @@
 <article class="view-template home" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
-    <img id="user-image" src="assets/images/pig_0.jpg" height="400px" width="600px"/>
-    <d-node dnid="1" dnode="dnode">
-        <div><h2>{{dnode.title}}</h2></div>
-        <div ng-bind-html="dnode.trustHtml(dnode.body.und[0].safe_value)"></div>
-    </d-node>
-    <button type="submit" class="button" ng-click="shareFB()">Share Something Special!</button>
-    <button type="submit" class="button" ng-click="shareTwitter()">Share Something Special on Twitter!</button>
+    <div class="file-select-wrapper">
+        <form name="fileUpload">
+            <div class="file-select-field-wrapper">
+                <div class="form-field-label-wrapper">
+                    <label for="file-select" class="field-label">Select or take a photo</label>
+                </div>
+                <div id="file-select" class="file-select" name="file" required
+                     ngf-select
+                     ng-model="file"
+                     ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'"
+                     ngf-max-size="1MB"
+                     ngf-min-height="400"
+                     ngf-resize="{width: 200, height: 200}"
+                     ngf-capture="camera">
+                    Click Here to Select a File
+                </div>
+                <span ng-show="file-upload.file.$error.required">*required</span>
+                <img ngf-thumbnail="file" />
 
+                <div class="file-select-submit-wrapper">
+                    <input type="button" name="submit" value="Upload Photo" ng-click="triggerUpload()" ng-disabled="fileUpload.$invalid"/>
+                </div>
+            </div>
+        </form>
+    </div>
 </article>

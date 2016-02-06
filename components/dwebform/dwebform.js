@@ -13,7 +13,6 @@ angular.module('dwebform', ['ngResource', 'btw.api', 'dnode', 'formly', 'formlyB
             var submission = new api();
             for (var i in data) {
                 // Add submission data to the submission object
-                //var dataIndex = data[i].key;
                 submission[i] = data[i];
             }
             // Post it to the server.

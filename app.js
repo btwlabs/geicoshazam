@@ -7,7 +7,8 @@ angular.module('btw', [
     'ngResource',
     'angular-gestures',
     'btw.pager',
-    'btw.home'
+    'btw.home',
+    'btw.share'
 ])
 .config(['$routeProvider', 'hammerDefaultOptsProvider', function($routeProvider, hammerDefaultOptsProvider) {
     $routeProvider.otherwise({redirectTo: '/'});

@@ -27,12 +27,25 @@ angular.module('dfile', ['ngResource', 'btw.api'])
         }
 
         /**
-         * Create a file.
+         * MOCK Create a file.
          */
-        file.create = function(data) {
+        file.mockCreate = function(data) {
             // Mock update promise @todo add a real one.
             var promise = $q.defer().promise;
             return promise;
+        }
+
+        /**
+         * Create a file.
+         */
+        file.create = function(data) {
+            var api = $resource(btwApi.root + 'file');
+            var file = new api();
+            for (var i in data) {
+                // Add submission data to the submission object
+                file[i] = data[i];
+            }
+            return file.$save();
         }
 
         /**

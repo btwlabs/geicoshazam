@@ -1,0 +1,10 @@
+<article class="view-template share" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
+    <img id="user-image" src="assets/images/pig_0.jpg" height="400px" width="600px"/>
+    <d-node dnid="1" dnode="dnode">
+        <div><h2>{{dnode.title}}</h2></div>
+        <div ng-bind-html="dnode.trustHtml(dnode.body.und[0].safe_value)"></div>
+    </d-node>
+    <button type="submit" class="button" ng-click="shareFB()">Share Something Special!</button>
+    <button type="submit" class="button" ng-click="shareTwitter()">Share Something Special on Twitter!</button>
+
+</article>
