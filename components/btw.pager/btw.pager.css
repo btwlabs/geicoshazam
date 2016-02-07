@@ -1,3 +1,18 @@
+
+/* line 5, ../sass/components/_angular-layout.scss */
+.view-template {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+/* line 32, ../sass/base/_layout.scss */
+article {
+    width: 100%;
+    height: auto; }
+
+
 .view-animate-prev.ng-enter {
     animation: slide-in-left 0.5s;
     -webkit-animation: slide-in-left 0.5s;

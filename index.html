@@ -40,6 +40,7 @@
 </head>
 <body ng-cloak>
 
+<div id="site-wrapper">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -47,6 +48,7 @@
   <div class="content">
     <div ng-view class="view" ng-class="{'view-animate' : mainVisitedOnce, 'view-animate-next' : swipedLeft, 'view-animate-prev' : swipedRight}"></div>
   </div><!-- .content -->
-
+</div>
+<btw-pager-dots></btw-pager-dots>
 </body>
 </html>
