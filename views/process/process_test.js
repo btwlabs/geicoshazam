@@ -1,18 +1,18 @@
 'use strict';
 
-describe('btw.share controller', function(){
+describe('btw.process controller', function(){
 
-  var $scope, shareCtrl;
+  var $scope, processCtrl;
 
-  beforeEach(module('btw.share'));
+  beforeEach(module('btw.process'));
 
   beforeEach(inject(function($controller, $rootScope) {
     $scope = $rootScope.$new();
-    shareCtrl = $controller('shareCtrl', {$scope : $scope});
+    processCtrl = $controller('processCtrl', {$scope : $scope});
   }));
 
   // Expect a controller to be defined
   it('should be defined', inject(function($controller, $rootScope) {
-    expect(shareCtrl).toBeDefined();
+    expect(processCtrl).toBeDefined();
   }));
 });

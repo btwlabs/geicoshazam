@@ -10,26 +10,24 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ngFileUpload'])
     });
 }])
 
-.controller('homeCtrl', ['$scope', 'dfile',
-    function($scope, dfile) {
-        $scope.triggerUpload  = function() {
+.controller('homeCtrl', ['$scope', '$rootScope', 'dfile', '$location', 'Upload',
+    function($scope, $rootScope, dfile, $location, Upload) {
+        $scope.next  = function() {
             if ($scope.fileUpload.file.$valid && $scope.file) {
-                $scope.uploadFile($scope.file);
+                $rootScope.file = $scope.file;
+                // @todo store file in local storage.
+                sessionStorage.setItem("userImage", angular.toJson($scope.file));
+                $location.path('/process');
             }
         }
-        $scope.uploadFile = function(file) {
-            var parts = file.$ngfDataUrl.split(',');
-            var upload = {};
-            upload.file = parts[1];
-            upload.filename = 'user-photo-' + Date.now();
-            var promise = dfile.create(upload);
-            promise.then(
-                function(response) {
-                    var go = 'yes';
-                },
-                function(reason) {
-                    var go = 'no';
-                });
-        }
+        $scope.$watch('file', function(newFile) {
+            if (typeof newFile == 'undefined') {return}
+            if (typeof newFile.$ngfDataUrl == 'undefined') {
+                var getDataUrl = Upload.dataUrl($scope.file, true);
+                getDataUrl.then(function(data) {
+                    $scope.file.$ngfDataUrl = data;
+                })
+            }
+        })
     }
 ]);

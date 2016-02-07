@@ -1,5 +1,8 @@
-<article class="view-template home" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
-    <div class="file-select-wrapper">
+<article class="view-template process" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
+    <div class="image-preview">
+        <img ng-src="{{file.$ngfDataUrl}}" id="user-image" class="user-image" />
+    </div>
+    <!--<div class="file-select-wrapper">
         <form name="fileUpload">
             <div class="file-select-field-wrapper">
                 <div class="form-field-label-wrapper">
@@ -20,9 +23,9 @@
                 <img ngf-thumbnail="file" />
 
                 <div class="file-select-submit-wrapper">
-                    <input type="button" name="submit" value="Next Step..." ng-click="next()" ng-disabled="fileUpload.$invalid"/>
+                    <input type="button" name="submit" value="Upload Photo" ng-click="triggerUpload()" hm-tap="triggerUpload()" ng-disabled="fileUpload.$invalid"/>
                 </div>
             </div>
         </form>
-    </div>
+    </div> -->
 </article>

@@ -8,11 +8,15 @@ angular.module('btw', [
     'angular-gestures',
     'btw.pager',
     'btw.home',
+    'btw.process',
     'btw.share'
 ])
 .config(['$routeProvider', 'hammerDefaultOptsProvider', function($routeProvider, hammerDefaultOptsProvider) {
     $routeProvider.otherwise({redirectTo: '/'});
     hammerDefaultOptsProvider.set({
-        recognizers: [[Hammer.Swipe, {direction: 6, prevent_default: false, threshold: 1, velocity: 0.1}]]
+        recognizers: [
+            [Hammer.Swipe, {direction: 6, prevent_default: false, threshold: 1, velocity: 0.1}],
+            [Hammer.Tap, {time:250}]
+        ]
     });
 }]);
