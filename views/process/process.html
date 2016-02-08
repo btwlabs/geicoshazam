@@ -1,31 +1,7 @@
 <article class="view-template process" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
     <div class="image-preview">
-        <img ng-src="{{file.$ngfDataUrl}}" id="user-image" class="user-image" />
+        <canvas id="canvas" height="1000px" width="1000px"></canvas>
+        <img src="assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png" id="layer-image" class="layer-image canvas-layer-image"/>
+        <img ng-src="{{file.$ngfDataUrl}}" id="user-image" class="user-image canvas-user-image" />
     </div>
-    <!--<div class="file-select-wrapper">
-        <form name="fileUpload">
-            <div class="file-select-field-wrapper">
-                <div class="form-field-label-wrapper">
-                    <label for="file-select" class="field-label">Select or take a photo</label>
-                </div>
-                <div id="file-select" class="file-select" name="file" required
-                     ngf-select
-                     ng-model="file"
-                     ngf-pattern="'image/*'"
-                     ngf-accept="'image/*'"
-                     ngf-max-size="5MB"
-                     ngf-min-height="400"
-                     ngf-resize="{width: 200, height: 200}"
-                     ngf-capture="camera">
-                    Click Here to Select a File
-                </div>
-                <span ng-show="file-upload.file.$error.required">*required</span>
-                <img ngf-thumbnail="file" />
-
-                <div class="file-select-submit-wrapper">
-                    <input type="button" name="submit" value="Upload Photo" ng-click="triggerUpload()" hm-tap="triggerUpload()" ng-disabled="fileUpload.$invalid"/>
-                </div>
-            </div>
-        </form>
-    </div> -->
 </article>
