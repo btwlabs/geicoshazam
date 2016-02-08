@@ -7,6 +7,9 @@
     <div class="processed-image-wrapper" ng-show="imageProcessed">
         <img id="user-image processed-image" ng-src="{{processedImageUrl}}" />
     </div>
+    <div class="step-button-wrapper step-button-start-over-wrapper">
+        <input type="button" name="submit" value="Start Over" ng-click="startOver()" />
+    </div>
     <div class="step-button-wrapper step-button-canvas-to-image-wrapper">
         <input type="button" name="submit" value="Next Step..." ng-click="uploadFile()" />
     </div>

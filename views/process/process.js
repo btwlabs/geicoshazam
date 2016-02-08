@@ -10,8 +10,16 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'btw.api', 'ngFileUpload'])
     });
 }])
 
-.controller('processCtrl', ['$scope', '$rootScope', 'dfile', 'btwApi',
-    function($scope, $rootScope, dfile, btwApi) {
+.controller('processCtrl', ['$scope', '$location', 'dfile', 'btwApi', 'startOver',
+    function($scope, $location, dfile, btwApi, startOver) {
+
+        /**
+         * Initializations.
+         */
+
+        // Initialize canvas object.
+        var canvas = new fabric.Canvas('canvas');
+        canvas.backgroundColor = 'rgba(255,255,255,255)';
 
         // Grab the user image file from session storage.
         $scope.file = angular.fromJson(sessionStorage.getItem("userImage"));
@@ -24,46 +32,55 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'btw.api', 'ngFileUpload'])
             $scope.imageProcessed = (typeof value == 'string');
         })
 
-        // Initialize canvas object.
-        var canvas = new fabric.Canvas('canvas');
+        $scope.startOver = startOver.startOver;
 
+        //
+        /**
+         * Canvas Manipulation.
+         */
         // Watch the file in scope and add images to it.
         $scope.$watch('file', function(fileVal) {
-            var userImage;
-            function checkAllLoaded() {
-                if (canvas.getObjects().length === 2) {
-                    canvas.bringToFront(userImage);
+            if ((typeof fileVal != 'undefined') && (fileVal != null)) {
+                var userImage;
+
+                var checkAllLoaded = function() {
+                    if (canvas.getObjects().length === 2) {
+                        canvas.bringToFront(userImage);
+                    }
                 }
+
+                // Add the layer Image.
+                var layerImageElement = angular.element(document.getElementById('layer-image'));
+                fabric.Image.fromURL(layerImageElement.attr('src'), function (image) {
+                    //var image = new fabric.Image(img);
+                    image.set({
+                        left: 100,
+                        top: 100,
+                        selectable: true
+                    });
+                    canvas.add(image);
+                    checkAllLoaded();
+                });
+
+                // Add the user image.
+                fabric.Image.fromURL(fileVal.$ngfDataUrl, function (image) {
+                    //var image = new fabric.Image(img);
+                    userImage = image.set({
+                        left: 100,
+                        top: 100,
+                        opacity: .5,
+                        selectable: true
+                    });
+                    image.hasRotatingPoint = true;
+                    canvas.add(image);
+                    checkAllLoaded();
+                });
             }
-
-            // Add the layer Image.
-            var layerImageElement = angular.element(document.getElementById('layer-image'));
-            fabric.Image.fromURL(layerImageElement.attr('src'), function(image) {
-                //var image = new fabric.Image(img);
-                image.set({
-                    left: 100,
-                    top: 100,
-                    selectable: true
-                });
-                canvas.add(image);
-                checkAllLoaded();
-            });
-
-            // Add the user image.
-            fabric.Image.fromURL(fileVal.$ngfDataUrl, function (image) {
-                //var image = new fabric.Image(img);
-                userImage = image.set({
-                    left: 100,
-                    top: 100,
-                    opacity:.5,
-                    selectable: true
-                });
-                image.hasRotatingPoint = true;
-                canvas.add(image);
-                checkAllLoaded();
-            });
         })
 
+        /**
+         * File upload.
+         */
         // Helper to get the encoded file data.
         var getFile = function(url) {
             var parts = url.split(',');
@@ -94,6 +111,7 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'btw.api', 'ngFileUpload'])
                     // Save the url to the new image based on filename, image style etc.
                     $scope.processedImageUrl = btwApi.imageRoot + upload.filename;
                     sessionStorage.setItem("processedImageUrl", $scope.processedImageUrl);
+                    $location.path('/share');
                     
                 },
                 function(reason) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('btw.share', ['ngRoute', 'dfile'])
+angular.module('btw.share', ['ngRoute', 'dfile', 'btw.api'])
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/share', {
@@ -11,8 +11,14 @@ angular.module('btw.share', ['ngRoute', 'dfile'])
     OAuth.initialize('U4mzG-co02w_C3N4BL1XyM9SHB0');
 }])
 
-.controller('shareCtrl', ['$scope', 'dfile',
-    function($scope, dfile) {
+.controller('shareCtrl', ['$scope', 'dfile', 'startOver',
+    function($scope, dfile, startOver) {
+        /**
+         * Initializations.
+         */
+        $scope.startOver = startOver.startOver;
+        $scope.processedImageUrl = sessionStorage.getItem('processedImageUrl');
+
         $scope.shareFB = function() {
             OAuth.popup('facebook', {cache:true})
             .done(function(result) {
