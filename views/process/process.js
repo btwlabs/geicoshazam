@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('btw.process', ['ngRoute', 'dfile', 'ngFileUpload'])
+angular.module('btw.process', ['ngRoute', 'dfile', 'btw.api', 'ngFileUpload'])
 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/process', {
@@ -10,33 +10,35 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'ngFileUpload'])
     });
 }])
 
-.controller('processCtrl', ['$scope', '$rootScope', 'dfile',
-    function($scope, $rootScope, dfile) {
+.controller('processCtrl', ['$scope', '$rootScope', 'dfile', 'btwApi',
+    function($scope, $rootScope, dfile, btwApi) {
 
-        // Initialize canvas with layer image.
+        // Grab the user image file from session storage.
+        $scope.file = angular.fromJson(sessionStorage.getItem("userImage"));
 
+        // Grab the processed image if it exists.
+        $scope.processedImageUrl = sessionStorage.getItem("processedImageUrl");
 
-        /*var layerImgInstance = new fabric.Image(layerImageElement, {
-            top: canvas.height/2,
-            left: canvas.width/2,
-            //scaleY: canvas.height / layerImageElement.height,
-            //scaleX: canvas.width / layerImageElement.width,
-            opacity: 1
-        });
-        canvas.add(layerImageElement);*/
+        // Watch and set imageProcessed.
+        $scope.$watch('processedImageUrl', function(value) {
+            $scope.imageProcessed = (typeof value == 'string');
+        })
+
+        // Initialize canvas object.
+        var canvas = new fabric.Canvas('canvas');
 
         // Watch the file in scope and add images to it.
         $scope.$watch('file', function(fileVal) {
-            var canvas = new fabric.Canvas('canvas');
             var userImage;
             function checkAllLoaded() {
                 if (canvas.getObjects().length === 2) {
                     canvas.bringToFront(userImage);
                 }
             }
+
+            // Add the layer Image.
             var layerImageElement = angular.element(document.getElementById('layer-image'));
             fabric.Image.fromURL(layerImageElement.attr('src'), function(image) {
-            //fabric.util.loadImage(layerImageElement.attr('src'), function (img) {
                 //var image = new fabric.Image(img);
                 image.set({
                     left: 100,
@@ -46,6 +48,8 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'ngFileUpload'])
                 canvas.add(image);
                 checkAllLoaded();
             });
+
+            // Add the user image.
             fabric.Image.fromURL(fileVal.$ngfDataUrl, function (image) {
                 //var image = new fabric.Image(img);
                 userImage = image.set({
@@ -60,39 +64,36 @@ angular.module('btw.process', ['ngRoute', 'dfile', 'ngFileUpload'])
             });
         })
 
-        // Grab the user image file from session storage.
-        $scope.file = angular.fromJson(sessionStorage.getItem("userImage"));
-
         // Helper to get the encoded file data.
-        var getFile = function(data) {
-            var parts = data.$ngfDataUrl.split(',');
+        var getFile = function(url) {
+            var parts = url.split(',');
             return parts[1];
         }
 
         // Helper to construct a filename from the file object.
-        var getFilename = function(data) {
-            var parts = data.$ngfDataUrl.split(',');
+        var getFilename = function(url) {
+            var parts = url.split(',');
             var parts2 = parts[0].split('/');
             var parts3 = parts2[1].split(';');
             return 'user-photo-' + Date.now() + '.' + parts3[0];
         }
 
-        // Trigger uploading the file object data to the server.
-        $scope.triggerUpload  = function() {
-            if ($scope.fileUpload.file.$valid && $scope.file) {
-                $scope.uploadFile($scope.file);
-            }
-        }
-
         // Do the file upload to the server.
         $scope.uploadFile = function(file) {
+            // De-select all objects in the canvas.
+            canvas.deactivateAll().renderAll();
             var upload = {};
-            upload.file = getFile(file);
-            upload.filename = getFilename(file);
+            var url = canvas.toDataURL({
+                format: 'jpeg'
+            })
+            upload.file = getFile(url);
+            upload.filename = getFilename(url);
             var promise = dfile.create(upload);
             promise.then(
                 function(response) {
-                    // @todo save the url to the new image based on filename, image style etc.
+                    // Save the url to the new image based on filename, image style etc.
+                    $scope.processedImageUrl = btwApi.imageRoot + upload.filename;
+                    sessionStorage.setItem("processedImageUrl", $scope.processedImageUrl);
                     
                 },
                 function(reason) {

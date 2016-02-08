@@ -1,7 +1,13 @@
 <article class="view-template process" hm-swipe-left="nextPage();" hm-swipe-right="prevPage();">
-    <div class="image-preview">
+    <div class="image-preview" ng-show="!imageProcessed">
         <canvas id="canvas" height="1000px" width="1000px"></canvas>
-        <img src="assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png" id="layer-image" class="layer-image canvas-layer-image"/>
-        <img ng-src="{{file.$ngfDataUrl}}" id="user-image" class="user-image canvas-user-image" />
+        <img style="display:none;" src="assets/images/btwlabs-logomark_blue-accent_transbg_800x800.png" id="layer-image" class="layer-image canvas-layer-image"/>
+        <img style="display:none;" ng-src="{{file.$ngfDataUrl}}" id="user-image" class="user-image canvas-user-image" />
+    </div>
+    <div class="processed-image-wrapper" ng-show="imageProcessed">
+        <img id="user-image processed-image" ng-src="{{processedImageUrl}}" />
+    </div>
+    <div class="step-button-wrapper step-button-canvas-to-image-wrapper">
+        <input type="button" name="submit" value="Next Step..." ng-click="uploadFile()" />
     </div>
 </article>

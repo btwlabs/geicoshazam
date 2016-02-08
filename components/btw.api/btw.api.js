@@ -6,5 +6,6 @@ angular.module('btw.api', [])
     function($location) {
         var api = new Object;
         api.root = 'http://dev-geicobackend.pantheon.io/api/v1/';
+        api.imageRoot = 'http://dev-geicobackend.pantheon.io/sites/default/files/';
         return api;
     }]);

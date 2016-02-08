@@ -15,7 +15,7 @@ angular.module('btw.home', ['ngRoute', 'dfile', 'ngFileUpload'])
         $scope.next  = function() {
             if ($scope.fileUpload.file.$valid && $scope.file) {
                 $rootScope.file = $scope.file;
-                // @todo store file in local storage.
+                // Store file in local storage.
                 sessionStorage.setItem("userImage", angular.toJson($scope.file));
                 $location.path('/process');
             }
